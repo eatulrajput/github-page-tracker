@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { getPagesRepos, GitHubPagesRepo } from "@/app/lib/github";
@@ -17,29 +17,29 @@ export default function Track() {
   };
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      <h1>GitHub Pages Tracker</h1>
+     <div className="h-full border border-neutral-100 shadow-md w-full max-w-4xl mx-auto p-4 flex flex-col items-center justify-between">
+      <h1 className="text-4xl font-medium text-blue-400 dark:text-gray-50">GitHub Pages Tracker</h1>
 
-      <input
-        type="text"
-        placeholder="Enter GitHub username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        style={{ padding: "0.5rem", marginRight: "0.5rem" }}
-      />
-      <button onClick={handleSearch} style={{ padding: "0.5rem" }}>
-        Search
-      </button>
+      <div className="mt-10 flex items-center justify-evenly w-full max-w-2xl">
+        <input
+          type="text"
+          placeholder="Enter GitHub username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="placeholder-text-blue-500 focus:outline-none focus:ring-2 flex-1 focus:ring-blue-400 p-2"
+        />
+        <button onClick={handleSearch} className="px-2 py-2 bg-blue-400 text-white rounded focus:outline-none border focus:ring-2 focus:ring-blue-400 cursor-pointer">Search</button>
+      </div>
 
       {loading && <p>Loading...</p>}
 
       {pages.length > 0 && (
-        <div style={{ marginTop: "2rem" }}>
-          <h2>Pages hosted by {username}:</h2>
+        <div className="mt-10">
+          <h2>Pages hosted by <span className="text-blue-400 font-medium"> {username}</span>:</h2>
           <ul>
             {pages.map((repo) => (
               <li key={repo.name}>
-                <a href={repo.url} target="_blank" rel="noopener noreferrer">
+                <a href={repo.url} className="text-blue-400 font-medium" target="_blank" rel="noopener noreferrer">
                   {repo.name}
                 </a>{" "}
                 (Last updated: {new Date(repo.updated_at).toLocaleDateString()})
@@ -55,3 +55,4 @@ export default function Track() {
     </div>
   );
 }
+
